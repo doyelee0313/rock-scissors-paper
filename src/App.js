@@ -28,16 +28,43 @@ function App() {
   const[userSelect, setUserSelect] = useState(null);//버튼을 클릭하면 클릭한 값이 박스에 보임
   //초기에 null로 설정해서 초기값 못그리는 에러발생
 
+  const[computerSelect, setComputerSelect] = useState(null);
+
+  const[result, setResult] = useState("");
+
   const play=(userChoice)=>{
     // userSelect = choice[userChoice] 이렇게 업데이트 하는거 아님
     setUserSelect(choice[userChoice])
+    let computerChoice = randomChoice();
+    setComputerSelect(computerChoice);
+    let result = judegement(choice[userChoice], computerChoice);
+    setResult(result);
+  }
+
+  const judegement=(user, computer)=>{
+    console.log(user, computer); //user 랑 computer 는 object 이기 때문에
+    if(user.name === computer.name){
+      return "tie"
+    } else if(user.name === "rock") return computer.name === "scissors" ? "win" : "lose"
+    else if(user.name === "paper") return computer.name === "scissors" ? "lose" : "win"
+    else if(user.name === "scissors") return computer.name === "rock" ? "lose" : "win"
+  }
+
+  const randomChoice=()=>{
+    let itemArrary = Object.keys(choice);//객체의 key 값만 뽑아서 array로 만들어 준다
+    // console.log(itemArrary);
+    let randomNum = Math.floor(Math.random() * itemArrary.length);//랜덤값은 0~1 사이인데 길이 곱해서 앞자리수만 가져오기
+    // console.log(randomItem);
+    let finalItem = itemArrary[randomNum];
+    // console.log(finalItem);
+    return choice[finalItem];
   }
 
   return (
     <div>
       <div className='main'>
-        <Box title='You' item={userSelect}/>
-        {/* <Box title='Computer'/> */}
+        <Box title='You' item={userSelect} result={result}/>
+        <Box title='Computer' item={computerSelect}/>
       </div>
       <div className='main'>
         <button onClick={()=>play("rock")}>rock</button>
