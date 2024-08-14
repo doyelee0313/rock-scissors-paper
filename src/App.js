@@ -13,24 +13,23 @@ import Box from "./component/Box"
 const choice = {
   rock:{
     name:"rock",
-    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Dwayne_%22The_Rock%22_Johnson_Visits_the_Pentagon_%2841%29_%28cropped%29.jpg/640px-Dwayne_%22The_Rock%22_Johnson_Visits_the_Pentagon_%2841%29_%28cropped%29.jpg"
+    img:"https://i.pinimg.com/originals/91/d1/38/91d138b2728e673eb7aa3ca68367357c.png"
   },
   scissors:{
     name:"scissors",
-    img:"https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_493,q_auto,w_875/c_pad,h_493,w_875/C0487101-01?pgw=1&pgwact=1"
+    img:"https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/hand-scissors-512.png"
   },
   paper:{
     name:"paper",
-    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlBJrv6z6L3ixesiVIZcOoPfzCrQmS0IsE3A&s"
+    img:"https://static.thenounproject.com/png/477922-200.png"
   }
 }
 function App() {
   const[userSelect, setUserSelect] = useState(null);//버튼을 클릭하면 클릭한 값이 박스에 보임
   //초기에 null로 설정해서 초기값 못그리는 에러발생
-
   const[computerSelect, setComputerSelect] = useState(null);
-
   const[result, setResult] = useState("");
+  const[comresult, setComResult] = useState("");
 
   const play=(userChoice)=>{
     // userSelect = choice[userChoice] 이렇게 업데이트 하는거 아님
@@ -39,6 +38,18 @@ function App() {
     setComputerSelect(computerChoice);
     let result = judegement(choice[userChoice], computerChoice);
     setResult(result);
+    let comresult = reverse(result);
+    setComResult(comresult);
+  }
+
+  const reverse=(result)=>{
+    if(result === "win"){
+      return "lose"
+    } else if(result === "lose") {
+      return "win"
+    } else {
+      return "tie"
+    }
   }
 
   const judegement=(user, computer)=>{
@@ -61,13 +72,13 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='background'>
       <div className='main'>
-        <Box title='You' item={userSelect} result={result}/>
-        <Box title='Computer' item={computerSelect}/>
+        <Box className='main' title='Player' item={userSelect} result={result}/>
+        <Box className='main' title='Computer' item={computerSelect} result={comresult}/>
       </div>
-      <div className='main'>
-        <button onClick={()=>play("rock")}>rock</button>
+      <div className='main button_container'>
+        <button className='btn-5' onClick={()=>play("rock")}>rock</button>
         <button onClick={()=>play("scissors")}>scissors</button>
         <button onClick={()=>play("paper")}>paper</button>
       </div>

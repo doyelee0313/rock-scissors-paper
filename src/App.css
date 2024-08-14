@@ -1,14 +1,90 @@
-.box{
-  border: 1px solid black;
-  width: 500px;
+.item-img{
+  width: 100px;
+  height: 100px;
 }
 
-.item-img{
-  width: 500px;
-  height: 500px;
+.background {
+  width: 100vw;
+  height: 100vh;
+  --color: #E1E1E1;
+  background-color: #F3F3F3;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+  background-size: 55px 55px;
+}
+
+.box {
+  box-sizing: border-box;
+  width: 200px;
+  height: 300px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+  flex-direction: column;
+}
+
+.box:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.box:active {
+  transform: scale(0.95) rotateZ(1.7deg);
 }
 
 .main{
   display: flex;
   justify-content: center;
+  padding: 100px 50px;
+  margin: 0px 50px;
 }
+
+.win{
+  border: 10px solid green;
+  color: green;
+}
+
+.lose{
+  border: 10px solid red;
+  color: red;
+}
+
+.tie{
+  border: 10px solid black;
+  color: black;
+}
+
+button {
+  margin: 10px;
+  background-color: white;
+  color: black;
+  border-radius: 10em;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 1em 2em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid black;
+  box-shadow: 0 0 0 0 black;
+}
+
+button:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 black;
+};
+
+button:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 black;
+};
