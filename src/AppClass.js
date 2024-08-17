@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import Box from './component/Box';
+// import Box from './component/Box';
+import "./App.css";
+import BoxClass from "./component/BoxClass";
 
 const choice = {
     rock:{
@@ -28,20 +30,20 @@ export default class AppClass extends Component {
         }
     }
 
-    play=(userChoice)=>{
-        let computerChoice = this.randomChoice();
-        this.setState({
-            userSelect: (choice[userChoice]),
-            computerSelect: (computerChoice),
-            result: (this.judegement(choice[userChoice], computerChoice)),
-            comresult: this.reverse(this.result),
-        })
-    }
+    play = (userChoice) => {
+      const computerChoice = this.randomChoice();
+      const user = choice[userChoice];
+      const computer = computerChoice;
+      const result = this.judegement(user, computer);
+      const comresult = this.reverse(result);
 
-    increase = () => {
-        this.setState({counter2:this.state.counter2 + 1, value: this.state.value + 1});
-        //증가를 이렇게 시킬 수 있다
-    }
+      this.setState({
+          userSelect: user,
+          computerSelect: computer,
+          result: result,
+          comresult: comresult,
+      });
+  }
 
     reverse=(result)=>{
         if(result === "win"){
@@ -77,8 +79,8 @@ export default class AppClass extends Component {
     return (
         <div className='background'>
         <div className='main'>
-          <Box className='main' title='Player' item={this.state.userSelect} result={this.state.result}/>
-          <Box className='main' title='Computer' item={this.state.computerSelect} result={this.state.comresult}/>
+          <BoxClass className='main' title='Player' item={this.state.userSelect} result={this.state.result}/>
+          <BoxClass className='main' title='Computer' item={this.state.computerSelect} result={this.state.comresult}/>
         </div>
         <div className='main button_container'>
           <button className='btn-5' onClick={()=>this.play("rock")}>rock</button>
